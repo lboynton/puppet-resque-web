@@ -1,0 +1,6 @@
+[submodule "modules/epel"]
+	path = modules/epel
+	url = https://github.com/stahnma/puppet-module-epel.git
+[submodule "modules/redis"]
+	path = modules/redis
+	url = https://github.com/lboynton/puppet-redis.git
