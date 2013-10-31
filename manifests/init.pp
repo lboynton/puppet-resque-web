@@ -1,4 +1,6 @@
-class resque_web {
+class resque_web(
+    $port   = 80
+) {
 	include redis
 
     package { 'ruby-devel':
@@ -17,7 +19,7 @@ class resque_web {
     }
 
     # start resque web interface
-    exec { '/root/resque-web.rb -p 80':
+    exec { "/root/resque-web.rb -p ${port}":
         unless  => '/usr/bin/pgrep -f resque-web',
         require => [
             File['/root/resque-web.rb'],
