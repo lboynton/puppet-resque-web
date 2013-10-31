@@ -1,7 +1,7 @@
 class resque_web(
     $port   = 80
 ) {
-	include redis
+    include redis
 
     package { 'ruby-devel':
         ensure  => installed,
