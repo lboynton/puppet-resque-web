@@ -1,13 +1,22 @@
 class resque_web {
 	include redis
-    package { 'resque':
+
+    package { ['resque', 'resque-scheduler']:
         ensure      => installed,
         provider    => 'gem',
     }
 
+    file { '/root/resque-web.rb':
+        mode    => 0755,
+        source  => 'puppet:///modules/resque_web/resque-web.rb',
+    }
+
     # start resque web interface
-    exec { '/usr/bin/resque-web -p 80':
+    exec { '/root/resque-web.rb -p 80':
         unless  => '/usr/bin/pgrep resque-web',
-        require => Service['redis'],
+        require => [
+            File['/root/resque-web.rb'],
+            Service['redis'],
+        ]
     }
 }
