@@ -1,9 +1,14 @@
 class resque_web {
 	include redis
 
+    package { 'ruby-devel':
+        ensure  => installed,
+    }
+
     package { ['resque', 'resque-scheduler']:
         ensure      => installed,
         provider    => 'gem',
+        require     => Package['ruby-devel'],
     }
 
     file { '/root/resque-web.rb':
