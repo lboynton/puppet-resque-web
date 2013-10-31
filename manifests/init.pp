@@ -18,7 +18,7 @@ class resque_web {
 
     # start resque web interface
     exec { '/root/resque-web.rb -p 80':
-        unless  => '/usr/bin/pgrep resque-web',
+        unless  => '/usr/bin/pgrep -f resque-web',
         require => [
             File['/root/resque-web.rb'],
             Service['redis'],
