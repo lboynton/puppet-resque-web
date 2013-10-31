@@ -11,8 +11,9 @@ class resque_web(
 
     # start resque web interface
     exec { "/root/resque-web.rb -p ${port}":
-        unless  => '/usr/bin/pgrep -f resque-web',
-        require => [
+        environment => 'HOME=/root',
+        unless      => '/usr/bin/pgrep -f resque-web',
+        require     => [
             File['/root/resque-web.rb'],
             Service['redis'],
         ]
