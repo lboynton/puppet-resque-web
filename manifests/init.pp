@@ -2,16 +2,7 @@ class resque_web(
     $port   = 80
 ) {
     include redis
-
-    package { 'ruby-devel':
-        ensure  => installed,
-    }
-
-    package { ['resque', 'resque-scheduler']:
-        ensure      => installed,
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
+    require resque_web::packages
 
     file { '/root/resque-web.rb':
         mode    => 0755,
