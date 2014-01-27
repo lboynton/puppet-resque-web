@@ -10,6 +10,7 @@ end
 require 'resque/server'
 require 'resque_scheduler'
 require 'resque_scheduler/server'
+require 'yaml'
 
 Vegas::Runner.new(Resque::Server, 'resque-web', {
   :before_run => lambda {|v|
